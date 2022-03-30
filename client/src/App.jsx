@@ -1,13 +1,41 @@
 import React from 'react';
 import { Navbar, Welcome, Transactions, Loader, Services, Footer } from './components';
+// import { useMoralis } from "react-moralis";
 
 const  App = () => {
+
+  // const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
+  // const login = async () => {
+  //   if (!isAuthenticated) {
+
+  //     await authenticate({signingMessage: "Log in using Moralis" })
+  //       .then(function (user) {
+  //         console.log("logged in user:", user);
+  //         // console.log(user!.get("ethAddress"));
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+
+  // const logOut = async () => {
+  //   await logout();
+  //   console.log("logged out");
+  // }
+
+  // gradient-bg-welcome
   return (
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
       <Navbar />
-      <Loader />
+      <Welcome />
       </div>
+      <Welcome />
+      <Loader />
+      {/* <div class="sticky inset-x-0 top-0 left-0 bg-gray-400 py-5">Menu</div> */}
+      <Loader />
+      <Loader />
     </div>
   );
 }

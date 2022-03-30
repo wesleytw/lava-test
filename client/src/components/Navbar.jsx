@@ -15,26 +15,28 @@ const NavBarItem = ({ title, classprops }) => (
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
-
+  // fixed bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex
+  // fixed w-full flex md:justify-center justify-between items-center p-4
   return (
-    <nav className="w-full flex md:justify-center justify-between items-center p-4">
-      <div className="md:flex-[0.5] flex-initial justify-center items-center">
-        <img src={logo} alt="logo" className="w-32 cursor-pointer" />
+    <nav className="fixed bg-[#ffffff] w-full md:justify-center justify-between items-center p-4 flex">
+      <div className={`md:flex-[0.5] flex-initial justify-center items-centercursor-pointer`}>
+        <div className={` ml-[0.8rem] text-black font-bold  font-mono text-4xl`}>LAVA🌋</div>
       </div>
-      <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
+  
+      <ul className="text-black md:flex hidden list-none flex-row justify-between items-center flex-initial">
         {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
           <NavBarItem key={item + index} title={item} />
         ))}
-        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] shadow">
+        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] shadow text-white">
           Login
         </li>
       </ul>
       <div className="flex relative">
         {!toggleMenu && (
-          <HiMenuAlt4 fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(true)} />
+          <HiMenuAlt4 fontSize={28} className="text-black md:hidden cursor-pointer" onClick={() => setToggleMenu(true)} />
         )}
         {toggleMenu && (
-          <AiOutlineClose fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(false)} />
+          <AiOutlineClose fontSize={28} className="text-black md:hidden cursor-pointer" onClick={() => setToggleMenu(false)} />
         )}
         {toggleMenu && (
           <ul
@@ -49,15 +51,16 @@ const Navbar = () => {
         )}
       </div>
     </nav>
+    
   );
 };
 
 export default Navbar;
 
 
-///opensea clone
+// ////opensea clone
 // const style = {
-//   wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex `,
+//   wrapper: `fixed bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex `,
 //   logoContainer: `flex items-center cursor-pointer`,
 //   logoText: ` ml-[0.8rem] text-white font-semibold text-2xl`,
 //   searchBar: `flex flex-1 mx-[0.8rem] w-max-[520px] items-center bg-[#363840] rounded-[0.8rem] hover:bg-[#4c505c]`,
@@ -70,7 +73,7 @@ export default Navbar;
 // const Navbar = () => {
 //   return (
 //     <div className={style.wrapper}>
-      
+
 //       <div className={style.searchBar}>
 //         <div className={style.searchIcon}>
 //           <AiOutlineSearch />
