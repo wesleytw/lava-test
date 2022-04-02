@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext, useRef, useState }from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
+
+import { AiFillPlayCircle } from "react-icons/ai";
+import { IoLogOutOutline } from "react-icons/io5";
 
 import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
@@ -8,29 +11,80 @@ import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 
 import logo from "../../images/logo.png";
 
+import { ConnectMoralis } from "../context/ConnectMoralis";
+import { shortenAddress } from "../utils/shortenAddress";
+import { useMoralis } from "react-moralis";
+import Jazzicon from "@metamask/jazzicon";
+// import Identicon from "../components/Identicon";
 
 const NavBarItem = ({ title, classprops }) => (
   <li className={`mx-4 cursor-pointer hover:text-[#1256bd] ${classprops}`}>{title}</li>
 );
 
+
 const Navbar = () => {
+  const { account, isAuthenticated, authenticate, isAuthenticating, logout, user } = useMoralis();
+  const login = async () => {
+    if (!isAuthenticated) {
+      await authenticate({ signingMessage: "Log in LAVA🌋" })
+        .then(function (user) {
+          console.log("logged in user:", user);
+          
+          console.log(user.get("ethAddress"));
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+    }
+  };
+  const logOut = async () => {
+    await logout();
+    console.log("logged out");
+  }
+
+  // const {account} = useContext(ConnectMoralis);
+
   const [toggleMenu, setToggleMenu] = React.useState(false);
   // fixed bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex
   // fixed w-full flex md:justify-center justify-between items-center p-4
+  
+
   return (
-    <nav className="fixed bg-[#ffffff] w-full md:justify-center justify-between items-center p-4 flex">
+    <nav className="fixed bg-[#ffffff] w-full md:justify-center justify-between items-center p-4 flex shadow">
       <div className={`md:flex-[0.5] flex-initial justify-center items-centercursor-pointer`}>
-        <div className={` ml-[0.8rem] text-black font-bold  font-mono text-4xl`}>LAVA🌋</div>
+        <div className={` ml-[0.8rem] text-black font-bold font-mono text-4xl`}>LAVA🌋</div>
       </div>
   
       <ul className="text-black md:flex hidden list-none flex-row justify-between items-center flex-initial">
         {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
           <NavBarItem key={item + index} title={item} />
         ))}
-        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] shadow text-white">
-          Login
-        </li>
+        {!isAuthenticated && (
+        <button onClick={login} className="bg-[#2952e3] text-sm py-2 px-4 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] shadow text-white">
+          Connect Wallet
+        </button>
+        )} 
+        {isAuthenticated && (
+          // <button onClick={logOut} className="bg-[#2952e3] text-sm py-2 px-4 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] shadow text-white">
+          //   {shortenAddress(user.get("ethAddress"))}
+          // </button>
+          <li>
+          <p className="mx-4 cursor-pointer hover:text-[#1256bd] text-black md:flex hidden list-none flex-row justify-between items-center flex-initial underline">
+            {shortenAddress(user.get("ethAddress"))}
+          </p>
+          </li>
+
+        // {/* <Identicon /> */}
+
+        )} 
+        {isAuthenticated && (
+          <button onClick={logOut} className="bg-[#2951e300] text-sm py-2 px-4 mx-4 rounded-full cursor-pointer hover:bg-[#ff000038] shadow ">
+          <IoLogOutOutline  color="#000000" />
+          </button>
+        )} 
       </ul>
+
+      
       <div className="flex relative">
         {!toggleMenu && (
           <HiMenuAlt4 fontSize={28} className="text-black md:hidden cursor-pointer" onClick={() => setToggleMenu(true)} />
@@ -49,6 +103,7 @@ const Navbar = () => {
             )}
           </ul>
         )}
+        
       </div>
     </nav>
     

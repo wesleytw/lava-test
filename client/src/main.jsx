@@ -6,7 +6,7 @@ import App from './App';
 import { MoralisProvider } from "react-moralis";
 
 ReactDOM.render(
-  < MoralisProvider serverUrl="https://bdyir3ngauv6.usemoralis.com:2053/server" appId="ut3Icy6uM55LLdHwrW0q2dCrtLqyJYkjCHbGxoJu">
+  < MoralisProvider serverUrl="https://piwhmoitousi.usemoralis.com:2053/server" appId="CAj0GwMIlqrbHbzDUw8SurLsCAn3BGOXI2DKTThX">
     <App />
   </ MoralisProvider > ,
   document.getElementById('root')
