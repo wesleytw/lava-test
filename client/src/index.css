@@ -89,8 +89,8 @@ body {
   -webkit-text-fill-color: transparent;
 } */
 .text-gradient {
-  background-color: rgb(255, 255, 255);
-  background-image: radial-gradient(at 4% 36%, hsla(0,0%,100%,1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
+  background-color: rgba(0, 0, 0, 0.459);
+  background-image: radial-gradient(at 4% 36%, rgb(0, 0, 0) 0, transparent 53%), radial-gradient(at 100% 60%, rgba(255, 255, 255, 0.904) 0, transparent 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

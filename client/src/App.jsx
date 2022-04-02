@@ -8,10 +8,10 @@ const  App = () => {
   return (
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
-      <Navbar />
-      <Welcome />
+        <Navbar />
+        <Welcome />
       </div>
-      <Welcome />
+      <Footer />
       <Loader />
       {/* <div class="sticky inset-x-0 top-0 left-0 bg-gray-400 py-5">Menu</div> */}
       <Loader />
